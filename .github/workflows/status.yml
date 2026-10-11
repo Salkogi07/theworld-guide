@@ -1,11 +1,12 @@
 name: status
 
 on:
+  # 주로 게임 서버의 systemd 타이머가 15분마다 tick 브랜치에 push 해서 깨운다 (GitHub cron 은 몇 시간씩 밀려서 예비용)
+  push:
+    branches: [main, tick]
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:
-  push:
-    branches: [main]
 
 permissions:
   contents: read
@@ -24,6 +25,8 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
