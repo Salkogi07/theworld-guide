@@ -38,6 +38,11 @@
   ol.steps { padding-left: 0; list-style: none; counter-reset: s; margin: 0; }
   ol.steps li { counter-increment: s; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px 14px 56px; margin-bottom: 10px; position: relative; }
   ol.steps li::before { content: counter(s); position: absolute; left: 16px; top: 13px; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: var(--card); font-weight: 700; display: grid; place-items: center; }
+  ol.steps li p { margin: 0; }
+  ol.steps img { display: block; max-width: 100%; height: auto; margin-top: 12px; border: 1px solid var(--line); border-radius: 8px; }
+  .need { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .need span { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; font-size: .92rem; }
+  .need span::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--ok); margin-right: 8px; vertical-align: 1px; }
   b { font-weight: 700; }
   code { background: var(--line); padding: 1px 6px; border-radius: 4px; font-size: .9em; word-break: break-all; }
   .note { background: var(--card); border-left: 4px solid var(--accent); padding: 12px 16px; border-radius: 0 8px 8px 0; }
@@ -70,14 +75,21 @@
   <p class="checked" id="checked"></p>
 
   <h2>처음 들어가는 법</h2>
-  <p>필요한 것: <b>마인크래프트 Java 에디션 정품 계정</b>, 운영자에게 받은 <b>서버 주소</b>와 <b>모드팩 주소</b>.</p>
+  <div class="need">
+    <span>마인크래프트 Java 에디션 정품 계정</span>
+    <span>운영자에게 받은 <b>서버 주소</b></span>
+    <span>운영자에게 받은 <b>모드팩 주소</b></span>
+  </div>
   <ol class="steps">
-    <li><a href="https://prismlauncher.org" target="_blank" rel="noopener">Prism Launcher</a>를 설치하고 실행합니다. 처음 나오는 설정에서 언어를 고르고, Java는 <b>자동 다운로드</b>를 고릅니다.</li>
-    <li>오른쪽 위 계정 메뉴 → <b>계정 관리 → Microsoft 추가</b>로 로그인합니다.</li>
-    <li>왼쪽 위 <b>인스턴스 추가 → 가져오기</b>에 운영자에게 받은 모드팩 주소(<code>http://…/TheWorld.zip</code>)를 붙여 넣고 확인을 누릅니다.</li>
-    <li>생긴 "The World"를 우클릭 → <b>편집 → 설정 → Java</b>에서 최대 메모리를 <b>6144MB 이상</b>으로 바꿉니다. (PC 램 16GB 기준 6~8GB)</li>
-    <li>"The World"를 더블클릭해 실행합니다. 업데이트 창이 모드를 받습니다. <b>첫 실행은 1~2분</b> 걸립니다.</li>
-    <li>게임이 켜지면 <b>멀티플레이 → 서버 추가</b>에 서버 주소를 넣고 접속합니다.</li>
+    <li><p><a href="https://prismlauncher.org/download/windows/" target="_blank" rel="noopener">Prism Launcher 다운로드 페이지</a>에서 Windows 설치 파일을 받아 설치합니다.</p></li>
+    <li><p>Prism Launcher를 처음 켜면 설정 창이 나옵니다. 언어는 <b>한국어</b>, Java는 <b>자동 다운로드</b>를 고르고 넘어갑니다.</p></li>
+    <li><p>오른쪽 위 <b>계정</b> → <b>계정 관리</b> → <b>Microsoft 추가</b>를 눌러 마인크래프트 계정으로 로그인합니다.</p></li>
+    <li><p>메인 화면 왼쪽 위의 <b>인스턴스 추가</b>를 누릅니다.</p></li>
+    <li><p>왼쪽 목록에서 <b>불러오기</b>를 고르고, <b>로컬 파일 또는 다운로드 링크</b> 칸에 모드팩 주소(<code>http://…/TheWorld.zip</code>)를 붙여 넣은 뒤 오른쪽 아래 <b>확인</b>을 누릅니다.</p>
+      <a href="images/step5-import.png" target="_blank"><img src="images/step5-import.png" alt="Prism Launcher 새 인스턴스 창의 불러오기 화면" loading="lazy"></a></li>
+    <li><p>생긴 <b>The World</b>를 우클릭 → <b>편집</b> → <b>설정</b> → <b>Java</b>에서 최대 메모리를 <b>6144</b> MB 이상으로 바꿉니다. (PC 램 16GB면 6~8GB)</p></li>
+    <li><p><b>The World</b>를 더블클릭해 실행합니다. 업데이트 창이 모드를 받습니다. <b>첫 실행은 1~2분</b> 걸리고, 다음부터는 금방 끝납니다.</p></li>
+    <li><p>게임이 켜지면 <b>멀티플레이</b> → <b>서버 추가</b>에 서버 주소를 넣고 접속합니다.</p></li>
   </ol>
 
   <h2>업데이트는?</h2>
@@ -87,10 +99,10 @@
   <table>
     <tr><th>증상</th><th>해결</th></tr>
     <tr><td>접속하면 모드가 맞지 않는다며 거부됨</td><td>게임을 완전히 끄고 다시 실행해 업데이트를 받습니다.</td></tr>
-    <tr><td>운영자가 "인스턴스를 새로 가져오라"고 공지함</td><td>3번을 다시 해서 새로 만듭니다. 기존 것은 지워도 됩니다.</td></tr>
+    <tr><td>운영자가 "인스턴스를 새로 가져오라"고 공지함</td><td>4~6번을 다시 해서 새로 만듭니다. 기존 것은 지워도 됩니다.</td></tr>
     <tr><td>업데이트 창에서 오류</td><td>위 <b>모드팩 자동 업데이트</b> 상태를 확인하세요. 문제면 운영자에게, 정상이면 인터넷 연결을 확인합니다.</td></tr>
     <tr><td>서버 목록에서 안 보이거나 접속 실패</td><td>위 <b>게임 서버</b> 상태를 확인하세요. 꺼져 있으면 운영자에게 알려 주세요.</td></tr>
-    <tr><td>게임이 느리거나 튕김</td><td>4번의 메모리를 늘립니다.</td></tr>
+    <tr><td>게임이 느리거나 튕김</td><td>6번의 메모리를 늘립니다.</td></tr>
   </table>
 </main>
 <script>
