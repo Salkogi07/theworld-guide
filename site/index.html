@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>더 월드 서버 안내</title>
+<style>
+  :root {
+    --bg: #f6f5f1; --card: #fff; --text: #1d1d1b; --muted: #6b6a65; --line: #e3e1da;
+    --ok: #1f8a4c; --ok-bg: #e5f4ea; --bad: #c0392b; --bad-bg: #fbe9e6; --wait: #8a6d1f; --wait-bg: #f7f0dc;
+    --accent: #2f6fb5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161614; --card: #21211e; --text: #ecebe6; --muted: #a09e96; --line: #33332f;
+      --ok: #5fd08d; --ok-bg: #19301f; --bad: #f08374; --bad-bg: #3a1e1a; --wait: #e2c26a; --wait-bg: #342c17;
+      --accent: #7fb2ec;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.65 system-ui, -apple-system, "Segoe UI", "Malgun Gothic", sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; }
+  h2 { font-size: 1.2rem; margin: 40px 0 12px; }
+  p.sub { color: var(--muted); margin: 0 0 24px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .card h3 { margin: 0 0 8px; font-size: .95rem; color: var(--muted); font-weight: 600; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 1.15rem; padding: 2px 12px 2px 10px; border-radius: 999px; }
+  .badge::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+  .ok { color: var(--ok); background: var(--ok-bg); }
+  .bad { color: var(--bad); background: var(--bad-bg); }
+  .wait { color: var(--wait); background: var(--wait-bg); }
+  .detail { margin: 10px 0 0; color: var(--muted); font-size: .9rem; }
+  .checked { color: var(--muted); font-size: .85rem; margin-top: 10px; }
+  details { margin-top: 6px; font-size: .9rem; color: var(--muted); }
+  details ul { margin: 6px 0 0; padding-left: 20px; }
+  ol.steps { padding-left: 0; list-style: none; counter-reset: s; margin: 0; }
+  ol.steps li { counter-increment: s; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px 14px 56px; margin-bottom: 10px; position: relative; }
+  ol.steps li::before { content: counter(s); position: absolute; left: 16px; top: 13px; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: var(--card); font-weight: 700; display: grid; place-items: center; }
+  b { font-weight: 700; }
+  code { background: var(--line); padding: 1px 6px; border-radius: 4px; font-size: .9em; word-break: break-all; }
+  .note { background: var(--card); border-left: 4px solid var(--accent); padding: 12px 16px; border-radius: 0 8px 8px 0; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; font-size: .95rem; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  th { color: var(--muted); font-weight: 600; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>더 월드 (The World)</h1>
+  <p class="sub">Create: Aeronautics 기반 협동 생존 마인크래프트 서버 · 플레이어 안내서</p>
+
+  <h2>지금 상태</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>게임 서버</h3>
+      <span class="badge wait" id="srv">확인 중…</span>
+      <p class="detail" id="srv-detail"></p>
+    </div>
+    <div class="card">
+      <h3>모드팩 자동 업데이트</h3>
+      <span class="badge wait" id="pack">확인 중…</span>
+      <p class="detail" id="pack-detail"></p>
+      <details id="mods" hidden><summary>들어 있는 모드 보기</summary><ul id="mod-list"></ul></details>
+    </div>
+  </div>
+  <p class="checked" id="checked"></p>
+
+  <h2>처음 들어가는 법</h2>
+  <p>필요한 것: <b>마인크래프트 Java 에디션 정품 계정</b>, 운영자에게 받은 <b>서버 주소</b>와 <b>모드팩 주소</b>.</p>
+  <ol class="steps">
+    <li><a href="https://prismlauncher.org" target="_blank" rel="noopener">Prism Launcher</a>를 설치하고 실행합니다. 처음 나오는 설정에서 언어를 고르고, Java는 <b>자동 다운로드</b>를 고릅니다.</li>
+    <li>오른쪽 위 계정 메뉴 → <b>계정 관리 → Microsoft 추가</b>로 로그인합니다.</li>
+    <li>왼쪽 위 <b>인스턴스 추가 → 가져오기</b>에 운영자에게 받은 모드팩 주소(<code>http://…/TheWorld.zip</code>)를 붙여 넣고 확인을 누릅니다.</li>
+    <li>생긴 "The World"를 우클릭 → <b>편집 → 설정 → Java</b>에서 최대 메모리를 <b>6144MB 이상</b>으로 바꿉니다. (PC 램 16GB 기준 6~8GB)</li>
+    <li>"The World"를 더블클릭해 실행합니다. 업데이트 창이 모드를 받습니다. <b>첫 실행은 1~2분</b> 걸립니다.</li>
+    <li>게임이 켜지면 <b>멀티플레이 → 서버 추가</b>에 서버 주소를 넣고 접속합니다.</li>
+  </ol>
+
+  <h2>업데이트는?</h2>
+  <p class="note">따로 할 것 없습니다. 게임을 켤 때마다 서버와 같은 모드로 <b>자동으로 맞춰집니다</b>. 모드 파일을 직접 넣거나 지우지 마세요.</p>
+
+  <h2>문제가 생기면</h2>
+  <table>
+    <tr><th>증상</th><th>해결</th></tr>
+    <tr><td>접속하면 모드가 맞지 않는다며 거부됨</td><td>게임을 완전히 끄고 다시 실행해 업데이트를 받습니다.</td></tr>
+    <tr><td>운영자가 "인스턴스를 새로 가져오라"고 공지함</td><td>3번을 다시 해서 새로 만듭니다. 기존 것은 지워도 됩니다.</td></tr>
+    <tr><td>업데이트 창에서 오류</td><td>위 <b>모드팩 자동 업데이트</b> 상태를 확인하세요. 문제면 운영자에게, 정상이면 인터넷 연결을 확인합니다.</td></tr>
+    <tr><td>서버 목록에서 안 보이거나 접속 실패</td><td>위 <b>게임 서버</b> 상태를 확인하세요. 꺼져 있으면 운영자에게 알려 주세요.</td></tr>
+    <tr><td>게임이 느리거나 튕김</td><td>4번의 메모리를 늘립니다.</td></tr>
+  </table>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+function set(el, cls, text) { el.className = "badge " + cls; el.textContent = text; }
+function ago(iso) {
+  const m = Math.round((Date.now() - new Date(iso)) / 60000);
+  if (m < 1) return "방금";
+  if (m < 60) return m + "분 전";
+  if (m < 1440) return Math.floor(m / 60) + "시간 전";
+  return Math.floor(m / 1440) + "일 전";
+}
+async function load() {
+  let s;
+  try {
+    s = await (await fetch("status.json?" + Date.now(), { cache: "no-store" })).json();
+  } catch {
+    set($("srv"), "wait", "정보 없음"); set($("pack"), "wait", "정보 없음");
+    return;
+  }
+  // 15분마다 확인하므로 1시간 넘게 안 바뀌었으면 확인 자체가 멈춘 것
+  const stale = Date.now() - new Date(s.checked_at) > 3600000;
+  const sv = s.server, pk = s.pack;
+  if (stale) set($("srv"), "wait", "확인 안 됨");
+  else if (sv.online) set($("srv"), "ok", "열림");
+  else set($("srv"), "bad", "닫힘");
+  $("srv-detail").textContent = sv.online ? `접속 ${sv.players} / ${sv.max}명 · 버전 ${sv.version}` : "지금은 접속할 수 없습니다.";
+
+  if (stale) set($("pack"), "wait", "확인 안 됨");
+  else if (pk.ok) set($("pack"), "ok", "정상 작동");
+  else set($("pack"), "bad", "문제 있음");
+  if (pk.mods) {
+    $("pack-detail").textContent = `Minecraft ${pk.minecraft} · NeoForge ${pk.neoforge} · 모드 ${pk.mods.length}개` +
+      (pk.changed_at ? ` · 마지막 변경 ${ago(pk.changed_at)}` : "");
+    $("mod-list").replaceChildren(...pk.mods.map(m => Object.assign(document.createElement("li"), { textContent: m })));
+    $("mods").hidden = false;
+  } else {
+    $("pack-detail").textContent = "모드팩 서버에 연결할 수 없습니다. 게임 실행 시 업데이트가 실패할 수 있습니다.";
+  }
+  $("checked").textContent = `마지막 확인: ${ago(s.checked_at)} (15분마다 자동 확인)` + (stale ? " — 확인이 멈춰 있습니다. 운영자에게 알려 주세요." : "");
+}
+load();
+setInterval(load, 60000);
+</script>
+</body>
+</html>
